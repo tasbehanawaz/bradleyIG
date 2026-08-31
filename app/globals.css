@@ -1,0 +1,222 @@
+@import "tailwindcss";
+
+@config "../tailwind.config.js";
+
+@source "../app/**/*.{js,ts,jsx,tsx,mdx}";
+@source "../components/**/*.{js,ts,jsx,tsx,mdx}";
+
+@theme {
+  --color-bg: #0b0b0b;
+  --color-gold: #fde18c;
+  --color-gold-deep: #d2ab36;
+  --color-gold-dim: #b8962e;
+  --color-gold-dark: #765900;
+  --color-gold-darker: #524315;
+  --color-gold-mid: #a78313;
+  --color-text-main: #f5f2e8;
+  --color-text-body: #cfcfcf;
+  --color-text-neutral: #fbfdfe;
+  --color-bronze-light: #d4af37;
+  --color-bronze: #b8960f;
+  --color-bronze-dark: #8b7310;
+
+  --font-sans: "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui,
+    -apple-system, sans-serif;
+  --font-serif: Georgia, serif;
+
+  --backdrop-blur-glass: 27px;
+  --backdrop-blur-glass-sm: 21px;
+
+  --background-image-gold-grad: linear-gradient(90deg, #d2ab36 0%, #fde18c 100%);
+  --background-image-gold-grad-l: linear-gradient(
+    270deg,
+    #d2ab36 0%,
+    #fde18c 100%
+  );
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  line-height: 1.5;
+}
+
+/* Body copy letter-spacing — open tracking reads easier than tight negative px values */
+p,
+li,
+td,
+th {
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+}
+
+/* Display headings keep a subtle tighten */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  letter-spacing: -0.03em;
+}
+
+a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--color-gold);
+}
+
+header a,
+header a:hover,
+footer a,
+footer a:hover {
+  text-decoration: none;
+}
+
+.body-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .body-stack {
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .body-stack {
+    gap: 1.75rem;
+  }
+}
+
+.container-prose {
+  max-width: 56rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+  .container-prose {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+.text-gold-gradient {
+  background: linear-gradient(90deg, #d2ab36 0%, #fde18c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gold-gradient-l {
+  background: linear-gradient(270deg, #d2ab36 0%, #fde18c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Homepage link index — stronger hover/focus, no motion */
+.home-index a {
+  font-size: 1.05rem;
+  text-underline-offset: 0.28em;
+}
+
+.home-index a:hover,
+.home-index a:focus-visible {
+  color: var(--color-gold);
+}
+
+.home-index li {
+  padding-bottom: 0.25rem;
+}
+
+/* Pull quote — letters / thesis pages */
+.pull-quote {
+  border-left: 2px solid rgba(210, 171, 54, 0.55);
+  padding-left: 1.25rem;
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  line-height: 1.55;
+  color: var(--color-text-main);
+}
+
+@media (min-width: 768px) {
+  .pull-quote {
+    font-size: 1.25rem;
+    padding-left: 1.5rem;
+  }
+}
+
+/* Secondary page body sections */
+.secondary-body > section + section {
+  margin-top: 2.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(184, 150, 46, 0.25);
+}
+
+.secondary-body > section > h2 {
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .secondary-body > section + section {
+    margin-top: 3rem;
+    padding-top: 3rem;
+  }
+}
+
+/*
+ * Motion: none on homepage.
+ * Secondary pages only — minimal, functional transitions.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .secondary-page .content-card {
+    transition:
+      border-color 0.2s ease,
+      background-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .secondary-page .content-card:hover {
+    border-color: rgba(253, 225, 140, 0.4);
+    background-color: rgba(255, 255, 255, 0.04);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+  }
+
+  .secondary-page .secondary-link,
+  .secondary-page a {
+    transition: color 0.2s ease;
+  }
+
+  .secondary-page header {
+    transition: border-color 0.2s ease;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .secondary-page .content-card,
+  .secondary-page a {
+    transition: none;
+  }
+}

@@ -1,0 +1,87 @@
+import type { Metadata } from "next";
+import ContactForm from "@/components/ContactForm";
+import SecondaryPage from "@/components/SecondaryPage";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata({
+  title: "Contact Bradley Innovations Group",
+  description:
+    "Contact Bradley Innovations Group regarding partnerships, investor information, media, speaking and general corporate inquiries.",
+  path: "/contact",
+});
+
+export default function Contact() {
+  return (
+    <SecondaryPage
+      title="Contact Bradley Innovations Group"
+      path="/contact"
+      intro={
+        <p>
+          For partnerships, media, investor information, speaking inquiries or
+          general corporate matters, please use the appropriate contact below.
+        </p>
+      }
+    >
+      <section className="body-stack">
+        <h2 className="text-2xl font-serif">Contact Information</h2>
+        <dl className="space-y-4 text-text-body">
+          <div>
+            <dt className="font-semibold text-text-main">General inquiries</dt>
+            <dd>
+              <a href="mailto:info@bradleyinnovations.group">
+                info@bradleyinnovations.group
+              </a>
+            </dd>
+          </div>
+          <div>
+            <dt className="font-semibold text-text-main">Partnerships</dt>
+            <dd>
+              <a href="mailto:partnerships@bradleyinnovations.group">
+                partnerships@bradleyinnovations.group
+              </a>
+            </dd>
+          </div>
+          <div>
+            <dt className="font-semibold text-text-main">Investor information</dt>
+            <dd>
+              <a href="mailto:investors@bradleyinnovations.group">
+                investors@bradleyinnovations.group
+              </a>
+            </dd>
+          </div>
+          <div>
+            <dt className="font-semibold text-text-main">Media and speaking</dt>
+            <dd>
+              <a href="mailto:media@bradleyinnovations.group">
+                media@bradleyinnovations.group
+              </a>
+            </dd>
+          </div>
+        </dl>
+      </section>
+
+      <section className="body-stack">
+        <h2 className="text-2xl font-serif">Offices</h2>
+        <dl className="space-y-4 text-text-body">
+          <div>
+            <dt className="font-semibold text-text-main">United States</dt>
+            <dd>[City, State or approved office address]</dd>
+          </div>
+          <div>
+            <dt className="font-semibold text-text-main">GCC</dt>
+            <dd>Dubai, United Arab Emirates [approved office address]</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section className="body-stack">
+        <h2 className="text-2xl font-serif">Send an inquiry</h2>
+        <p className="text-text-body text-sm">
+          Please do not send confidential, proprietary or personal information
+          through the website contact form.
+        </p>
+        <ContactForm />
+      </section>
+    </SecondaryPage>
+  );
+}
