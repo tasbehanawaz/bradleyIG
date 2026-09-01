@@ -20,7 +20,10 @@
   --color-bronze: #b8960f;
   --color-bronze-dark: #8b7310;
 
+  /* Same stack as jmbx.ai (.font-display / .font-sans) */
   --font-sans: "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui,
+    -apple-system, sans-serif;
+  --font-display: "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui,
     -apple-system, sans-serif;
   --font-serif: Georgia, serif;
 
@@ -40,31 +43,126 @@ html {
   color-scheme: dark;
 }
 
+/* Support text resize to 200%+ without clipping */
+html,
+body {
+  overflow-x: clip;
+}
+
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--color-bg);
   color: var(--color-text-main);
   line-height: 1.5;
+  letter-spacing: 0.03em;
 }
 
-/* Body copy letter-spacing — open tracking reads easier than tight negative px values */
+/* Screen-reader only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only-focusable:focus,
+.sr-only-focusable:focus-visible {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0.75rem 1rem;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Skip link — first focusable control */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--color-gold);
+  color: var(--color-bg);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform 0.15s ease;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid var(--color-text-main);
+  outline-offset: 2px;
+  text-decoration: none;
+  color: var(--color-bg);
+}
+
+/* Visible keyboard focus — WCAG 2.2 AA */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+  border-color: var(--color-gold);
+}
+
+/* Body copy — open tracking for readability on dark backgrounds */
 p,
 li,
 td,
-th {
-  letter-spacing: 0.02em;
+th,
+dd,
+dt,
+label,
+button,
+input,
+textarea,
+select {
+  letter-spacing: 0.03em;
   line-height: 1.5;
+  overflow-wrap: break-word;
 }
 
-/* Display headings keep a subtle tighten */
+/* Headings — slight tighten only; avoid cramped tracking */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  letter-spacing: -0.03em;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--color-gold);
 }
 
 a {
@@ -76,6 +174,21 @@ a {
 
 a:hover {
   color: var(--color-gold);
+}
+
+/* Button-style CTAs — beat global link underline + gold hover */
+a.site-cta,
+a.site-cta:hover {
+  text-decoration: none;
+}
+
+a.site-cta {
+  color: var(--color-gold);
+}
+
+a.site-cta:hover {
+  background-color: var(--color-gold);
+  color: var(--color-bg);
 }
 
 header a,
@@ -132,19 +245,30 @@ footer a:hover {
   color: transparent;
 }
 
-/* Homepage link index — stronger hover/focus, no motion */
-.home-index a {
-  font-size: 1.05rem;
-  text-underline-offset: 0.28em;
+/* Homepage link index — card tiles */
+.home-index a.home-index-card {
+  text-decoration: none;
+  color: inherit;
 }
 
-.home-index a:hover,
-.home-index a:focus-visible {
-  color: var(--color-gold);
+.home-index a.home-index-card:hover {
+  color: inherit;
 }
 
-.home-index li {
-  padding-bottom: 0.25rem;
+.home-index a.home-index-card p {
+  text-decoration: none;
+}
+
+/* Full-card link wrappers — no underlines; arrow signals the link */
+.secondary-page a.content-card,
+.secondary-page a.content-card:hover,
+.secondary-page a.content-card span,
+.secondary-page a.content-card p,
+.secondary-page .content-card > a.block,
+.secondary-page .content-card > a.block:hover,
+.secondary-page .content-card > a.block h2,
+.secondary-page .content-card > a.block p {
+  text-decoration: none;
 }
 
 /* Pull quote — letters / thesis pages */
@@ -162,6 +286,23 @@ footer a:hover {
     font-size: 1.25rem;
     padding-left: 1.5rem;
   }
+}
+
+/* Secondary page headings — centered (page/section titles) */
+.secondary-page header {
+  text-align: center;
+}
+
+.secondary-page h1,
+.secondary-page h2,
+.secondary-page h3,
+.secondary-page h4 {
+  text-align: center;
+}
+
+/* Icon + copy cards — title sits beside the icon, left-aligned */
+.secondary-page .content-card .card-row h3 {
+  text-align: left;
 }
 
 /* Secondary page body sections */
@@ -183,18 +324,20 @@ footer a:hover {
 }
 
 /*
- * Motion: none on homepage.
- * Secondary pages only — minimal, functional transitions.
+ * Motion: secondary content cards + homepage index cards.
+ * Minimal, functional transitions only.
  */
 @media (prefers-reduced-motion: no-preference) {
-  .secondary-page .content-card {
+  .secondary-page .content-card,
+  .home-index .home-index-card {
     transition:
       border-color 0.2s ease,
       background-color 0.2s ease,
       box-shadow 0.2s ease;
   }
 
-  .secondary-page .content-card:hover {
+  .secondary-page .content-card:hover,
+  .home-index .home-index-card:hover {
     border-color: rgba(253, 225, 140, 0.4);
     background-color: rgba(255, 255, 255, 0.04);
     box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
@@ -215,7 +358,12 @@ footer a:hover {
     scroll-behavior: auto;
   }
 
+  .skip-link {
+    transition: none;
+  }
+
   .secondary-page .content-card,
+  .home-index .home-index-card,
   .secondary-page a {
     transition: none;
   }

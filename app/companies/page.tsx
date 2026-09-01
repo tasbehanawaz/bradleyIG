@@ -67,7 +67,7 @@ export default function Companies() {
           <ContentCard key={company.name}>
             <div className="body-stack">
               <div>
-                <h2 className="text-2xl font-serif text-text-main mb-1">
+                <h2 className="text-2xl font-sans text-gold mb-1">
                   {company.name}
                 </h2>
                 <p className="text-text-body text-sm mb-3">
@@ -82,7 +82,14 @@ export default function Companies() {
               ))}
               {company.href ? (
                 <p>
-                  <a href={company.href}>{company.cta}</a>
+                  <a
+                    href={company.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline underline-offset-[0.2em]"
+                  >
+                    {company.cta}
+                  </a>
                 </p>
               ) : null}
             </div>

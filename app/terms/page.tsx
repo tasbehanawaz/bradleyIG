@@ -22,7 +22,7 @@ export default function Terms() {
       }
     >
       <section className="body-stack">
-        <h2 className="text-2xl font-serif">Disclaimer</h2>
+        <h2 className="text-2xl font-sans">Disclaimer</h2>
         <p className="text-text-body text-sm">
           The information on this website is provided for general informational
           purposes only. It is not intended to be, and should not be construed
@@ -50,7 +50,7 @@ export default function Terms() {
       </section>
 
       <section className="body-stack">
-        <h2 className="text-2xl font-serif">Portfolio-company separation</h2>
+        <h2 className="text-2xl font-sans">Portfolio-company separation</h2>
         <p className="text-text-body text-sm">
           Bradley Innovations Group and its operating companies are separate
           legal entities. Each company is responsible for its own products,

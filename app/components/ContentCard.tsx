@@ -5,7 +5,7 @@ type ContentCardProps = {
   className?: string;
 };
 
-/** Card container — use only for companies, leaders, news and letters. */
+/** Card container — companies, leaders, news, letters, and capability tiles. */
 export default function ContentCard({ children, className = "" }: ContentCardProps) {
   return (
     <div

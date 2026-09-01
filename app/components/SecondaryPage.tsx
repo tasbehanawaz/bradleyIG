@@ -43,6 +43,7 @@ export default function SecondaryPage({
   children,
 }: SecondaryPageProps) {
   const hasDates = Boolean(published || updated);
+  const showUpdated = Boolean(updated && updated !== published);
   const crumbItems = [
     { name: "Home", path: "/" },
     ...breadcrumbs,
@@ -59,8 +60,8 @@ export default function SecondaryPage({
         </a>
       </p>
 
-      <header className="mb-10 md:mb-12 pb-8 border-b border-gold-dim/25">
-        <h1 className="text-4xl md:text-[2.75rem] font-serif mb-4 leading-tight">
+      <header className="mb-10 md:mb-12 pb-8 border-b border-gold-dim/25 text-center">
+        <h1 className="text-4xl md:text-[2.75rem] font-sans text-gold mb-4 leading-tight">
           {title}
         </h1>
 
@@ -68,22 +69,28 @@ export default function SecondaryPage({
           <p className="mb-4 text-sm text-text-body/70">
             {published ? (
               <span>Published {formatDisplayDate(published)}</span>
-            ) : null}
-            {published && updated ? <span aria-hidden="true"> · </span> : null}
-            {updated ? (
+            ) : updated ? (
               <span>Updated {formatDisplayDate(updated)}</span>
+            ) : null}
+            {published && showUpdated ? (
+              <span aria-hidden="true"> · </span>
+            ) : null}
+            {published && showUpdated ? (
+              <span>Updated {formatDisplayDate(updated!)}</span>
             ) : null}
           </p>
         ) : null}
 
         {lede ? (
-          <p className="text-gold-gradient text-lg md:text-xl font-serif mb-4">
+          <p className="text-gold-gradient text-lg md:text-xl font-sans mb-4">
             {lede}
           </p>
         ) : null}
 
         {intro ? (
-          <div className="body-stack text-text-body max-w-3xl">{intro}</div>
+          <div className="body-stack text-text-body max-w-3xl mx-auto">
+            {intro}
+          </div>
         ) : null}
       </header>
 

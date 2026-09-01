@@ -23,7 +23,7 @@ export default function Contact() {
       }
     >
       <section className="body-stack">
-        <h2 className="text-2xl font-serif">Contact Information</h2>
+        <h2 className="text-2xl font-sans">Contact Information</h2>
         <dl className="space-y-4 text-text-body">
           <div>
             <dt className="font-semibold text-text-main">General inquiries</dt>
@@ -61,7 +61,7 @@ export default function Contact() {
       </section>
 
       <section className="body-stack">
-        <h2 className="text-2xl font-serif">Offices</h2>
+        <h2 className="text-2xl font-sans">Offices</h2>
         <dl className="space-y-4 text-text-body">
           <div>
             <dt className="font-semibold text-text-main">United States</dt>
@@ -74,13 +74,17 @@ export default function Contact() {
         </dl>
       </section>
 
-      <section className="body-stack">
-        <h2 className="text-2xl font-serif">Send an inquiry</h2>
-        <p className="text-text-body text-sm">
-          Please do not send confidential, proprietary or personal information
-          through the website contact form.
-        </p>
-        <ContactForm />
+      <section className="mx-auto w-full max-w-xl">
+        <div className="rounded-2xl border border-gold-dim/30 bg-white/[0.025] px-5 py-6 md:px-7 md:py-8">
+          <div className="body-stack">
+            <h2 className="text-2xl font-sans text-center">Send an inquiry</h2>
+            <p className="text-text-body text-sm text-center">
+              Please do not send confidential, proprietary or personal
+              information through the website contact form.
+            </p>
+            <ContactForm />
+          </div>
+        </div>
       </section>
     </SecondaryPage>
   );

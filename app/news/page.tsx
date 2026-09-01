@@ -10,13 +10,15 @@ export const metadata: Metadata = pageMetadata({
   path: "/news",
 });
 
-/** Empty until an approved launch announcement is ready for publication. */
-const newsItems: Array<{
-  date: string;
-  headline: string;
-  summary: string;
-  href: string | null;
-}> = [];
+const newsItems = [
+  {
+    date: "2026-09-02",
+    headline: "Bradley Innovations Group Launches Official Corporate Website",
+    summary:
+      "Bradley Innovations Group today launched its official corporate website as a central source for the group, its companies, leadership, Identic AI thesis and governance.",
+    href: "/news/bradley-innovations-group-launches-official-corporate-website",
+  },
+] as const;
 
 function formatDisplayDate(iso: string) {
   return new Date(`${iso}T00:00:00`).toLocaleDateString("en-US", {
@@ -40,27 +42,39 @@ export default function News() {
         </p>
       }
     >
-      {newsItems.length === 0 ? (
-        <p className="text-text-body">No news items published yet.</p>
-      ) : (
-        <div className="space-y-4">
-          {newsItems.map((item) => (
-            <ContentCard key={item.headline}>
-              <p className="text-text-body/70 text-sm mb-2">
+      <div className="space-y-4">
+        {newsItems.map((item) => (
+          <ContentCard key={item.headline} className="group">
+            <a
+              href={item.href}
+              className="no-underline hover:no-underline block"
+            >
+              <p className="text-text-body/70 text-sm mb-2 text-left">
                 {formatDisplayDate(item.date)}
               </p>
-              <h2 className="text-lg font-serif text-text-main mb-2">
-                {item.href ? (
-                  <a href={item.href}>{item.headline}</a>
-                ) : (
-                  item.headline
-                )}
-              </h2>
-              <p className="text-text-body">{item.summary}</p>
-            </ContentCard>
-          ))}
-        </div>
-      )}
+              <div className="flex items-start justify-between gap-3 mb-2">
+                <h2 className="text-lg font-sans text-gold leading-snug text-left">
+                  {item.headline}
+                </h2>
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  className="mt-0.5 h-5 w-5 shrink-0 text-text-body/70 transition-colors group-hover:text-gold"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M7 17L17 7" />
+                  <path d="M8 7h9v9" />
+                </svg>
+              </div>
+              <p className="text-text-body text-sm text-left">{item.summary}</p>
+            </a>
+          </ContentCard>
+        ))}
+      </div>
     </SecondaryPage>
   );
 }

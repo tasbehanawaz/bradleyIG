@@ -9,6 +9,8 @@ const TITLE = "Building Companies for the Age of Identic AI";
 const DESCRIPTION =
   "A message from Joseph M. Bradley on building companies for the age of Identic AI — purpose, operating philosophy and long-term commitment.";
 
+const PUBLISHED = "2026-09-02";
+
 export const metadata: Metadata = pageMetadata({
   title: `${TITLE} | Bradley Innovations Group`,
   description: DESCRIPTION,
@@ -21,8 +23,7 @@ export default function MessageFromFounder() {
     <SecondaryPage
       title={TITLE}
       path={PATH}
-      published="2026-03-01"
-      updated="2026-03-01"
+      published={PUBLISHED}
       breadcrumbs={[{ name: "Letters & Perspectives", path: "/letters" }]}
     >
       <JsonLd
@@ -30,8 +31,8 @@ export default function MessageFromFounder() {
           title: TITLE,
           description: DESCRIPTION,
           path: PATH,
-          datePublished: "2026-03-01",
-          dateModified: "2026-03-01",
+          datePublished: PUBLISHED,
+          dateModified: PUBLISHED,
           authorName: "Joseph M. Bradley",
         })}
       />

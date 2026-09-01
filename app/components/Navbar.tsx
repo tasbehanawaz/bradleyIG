@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { getCdnUrl } from "@/lib/cdn";
 
 const NAV_ITEMS = [
@@ -22,6 +22,9 @@ function isActive(pathname: string, href: string) {
 export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const panelId = useId();
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setOpen(false);
@@ -29,11 +32,20 @@ export default function Navbar() {
 
   useEffect(() => {
     if (!open) return;
+
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") {
+        setOpen(false);
+        toggleRef.current?.focus();
+      }
     };
+
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
+
+    const firstLink = panelRef.current?.querySelector<HTMLElement>("a");
+    firstLink?.focus();
+
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
@@ -48,22 +60,22 @@ export default function Navbar() {
       >
         <Link
           href="/"
-          className="shrink-0 no-underline hover:no-underline"
+          className="shrink-0 no-underline hover:no-underline rounded-sm"
           aria-label="Bradley Innovations Group home"
         >
           <img
             src={getCdnUrl("BIG_mark_light.svg")}
-            alt="Bradley Innovations Group"
+            alt=""
             width={72}
             height={28}
             className="h-6 w-auto md:h-7"
+            decoding="async"
           />
         </Link>
 
-        {/* Desktop nav */}
         <nav
           className="hidden min-w-0 flex-1 items-center justify-end gap-x-4 lg:flex xl:gap-x-5"
-          aria-label="Main"
+          aria-label="Primary"
         >
           {NAV_ITEMS.map((item) => {
             const active = isActive(pathname, item.href);
@@ -71,7 +83,8 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`whitespace-nowrap no-underline hover:no-underline text-[13px] xl:text-sm tracking-wide transition-colors ${
+                aria-current={active ? "page" : undefined}
+                className={`whitespace-nowrap no-underline hover:no-underline rounded-sm text-[13px] xl:text-sm tracking-wide transition-colors ${
                   active
                     ? "text-gold"
                     : "text-text-neutral hover:text-gold"
@@ -83,17 +96,16 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Mobile toggle */}
         <button
+          ref={toggleRef}
           type="button"
           className="inline-flex h-10 w-10 items-center justify-center rounded-full text-text-neutral transition-colors hover:text-gold lg:hidden"
           aria-expanded={open}
-          aria-controls="mobile-nav"
+          aria-controls={panelId}
           aria-label={open ? "Close menu" : "Open menu"}
           onClick={() => setOpen((v) => !v)}
         >
-          <span className="sr-only">{open ? "Close" : "Menu"}</span>
-          <span className="relative block h-3.5 w-5">
+          <span className="relative block h-3.5 w-5" aria-hidden="true">
             <span
               className={`absolute left-0 top-0 block h-px w-full bg-current transition-transform duration-200 ${
                 open ? "translate-y-[7px] rotate-45" : ""
@@ -113,9 +125,10 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile panel */}
       <div
-        id="mobile-nav"
+        ref={panelRef}
+        id={panelId}
+        hidden={!open}
         className={`pointer-events-auto mx-auto mt-2 max-w-6xl overflow-hidden transition-[max-height,opacity] duration-300 lg:hidden ${
           open ? "max-h-[28rem] opacity-100" : "max-h-0 opacity-0"
         }`}
@@ -123,7 +136,7 @@ export default function Navbar() {
         <nav
           className="rounded-3xl border border-white/15 bg-black/70 px-4 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.45)] backdrop-blur-glass"
           style={{ WebkitBackdropFilter: "blur(27px)" }}
-          aria-label="Mobile"
+          aria-label="Primary mobile"
         >
           <ul className="flex flex-col">
             {NAV_ITEMS.map((item) => {
@@ -132,7 +145,8 @@ export default function Navbar() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className={`block border-b border-white/10 py-3.5 no-underline hover:no-underline text-sm tracking-wide last:border-b-0 ${
+                    aria-current={active ? "page" : undefined}
+                    className={`block border-b border-white/10 py-3.5 no-underline hover:no-underline rounded-sm text-sm tracking-wide last:border-b-0 ${
                       active
                         ? "text-gold"
                         : "text-text-neutral hover:text-gold"

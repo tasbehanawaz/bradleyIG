@@ -17,7 +17,7 @@ const letters = [
     summary: "A message from Joseph M. Bradley.",
     href: "/letters/a-message-from-joseph-m-bradley",
     author: "Joseph M. Bradley",
-    published: "2026-03-01",
+    published: "2026-09-02",
   },
   {
     year: null,
@@ -54,7 +54,7 @@ const letters = [
     author: null,
     published: null,
   },
-];
+] as const;
 
 function formatDisplayDate(iso: string) {
   return new Date(`${iso}T00:00:00`).toLocaleDateString("en-US", {
@@ -62,6 +62,24 @@ function formatDisplayDate(iso: string) {
     month: "long",
     day: "numeric",
   });
+}
+
+function ArrowUpRight() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+      className="mt-0.5 h-5 w-5 shrink-0 text-text-body/70 transition-colors group-hover:text-gold"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M7 17L17 7" />
+      <path d="M8 7h9v9" />
+    </svg>
+  );
 }
 
 export default function Letters() {
@@ -79,36 +97,53 @@ export default function Letters() {
           research or a promise of future performance.
         </p>
       }
-      updated="2026-03-01"
+      updated="2026-09-02"
     >
       <div className="space-y-4">
-        {letters.map((item) => (
-          <ContentCard key={item.title}>
-            <h2 className="text-lg font-serif text-text-main mb-2">
+        {letters.map((item) => {
+          const heading = (
+            <>
+              {item.year ? `${item.year} — ` : null}
+              {item.title}
+            </>
+          );
+
+          const body = (
+            <>
+              <div className="flex items-start justify-between gap-3 mb-2">
+                <h2 className="text-lg font-sans text-gold leading-snug text-left">
+                  {heading}
+                </h2>
+                <ArrowUpRight />
+              </div>
+              {(item.author || item.published) && (
+                <p className="text-text-body/70 text-sm mb-2 text-left">
+                  {item.author}
+                  {item.author && item.published ? " · " : null}
+                  {item.published
+                    ? `Published ${formatDisplayDate(item.published)}`
+                    : null}
+                </p>
+              )}
+              <p className="text-text-body text-sm text-left">{item.summary}</p>
+            </>
+          );
+
+          return (
+            <ContentCard key={item.title} className="group">
               {item.href ? (
-                <a href={item.href}>
-                  {item.year ? `${item.year} — ` : null}
-                  {item.title}
+                <a
+                  href={item.href}
+                  className="no-underline hover:no-underline block"
+                >
+                  {body}
                 </a>
               ) : (
-                <>
-                  {item.year ? `${item.year} — ` : null}
-                  {item.title}
-                </>
+                <div className="opacity-90">{body}</div>
               )}
-            </h2>
-            {(item.author || item.published) && (
-              <p className="text-text-body/70 text-sm mb-2">
-                {item.author}
-                {item.author && item.published ? " · " : null}
-                {item.published
-                  ? `Published ${formatDisplayDate(item.published)}`
-                  : null}
-              </p>
-            )}
-            <p className="text-text-body">{item.summary}</p>
-          </ContentCard>
-        ))}
+            </ContentCard>
+          );
+        })}
       </div>
     </SecondaryPage>
   );

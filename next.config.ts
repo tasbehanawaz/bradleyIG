@@ -1,6 +1,11 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
+  // Parent ~/package-lock.json otherwise makes Turbopack use the wrong root and 404 nested routes
+  turbopack: {
+    root: path.join(__dirname),
+  },
   images: {
     remotePatterns: [
       {
@@ -11,10 +16,12 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "cdn.example.com",
       },
+      {
+        protocol: "https",
+        hostname: "media-usquared-test.prospertech.io",
+      },
     ],
   },
-  // Alternate domains should redirect to the canonical HTTPS host at the
-  // DNS/CDN or hosting layer (e.g. bradleyinnovations.com → bradleyinnovations.group).
 };
 
 export default nextConfig;

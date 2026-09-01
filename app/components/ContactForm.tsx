@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useId, useState } from "react";
 
 const INTEREST_OPTIONS = [
   "Partnership",
@@ -12,8 +12,14 @@ const INTEREST_OPTIONS = [
   "General",
 ] as const;
 
+const fieldClass =
+  "w-full rounded-lg border border-gold-dim/40 bg-transparent px-3 py-2.5 text-text-main outline-none focus-visible:border-gold";
+
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "sent">("idle");
+  const formId = useId();
+  const statusId = `${formId}-status`;
+  const consentId = `${formId}-consent`;
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -46,58 +52,69 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="body-stack max-w-xl">
+    <form
+      onSubmit={handleSubmit}
+      className="body-stack w-full"
+      noValidate={false}
+      aria-describedby={status === "sent" ? statusId : undefined}
+    >
       <div className="flex flex-col gap-2">
-        <label htmlFor="name" className="text-sm text-text-main">
+        <label htmlFor={`${formId}-name`} className="text-sm text-text-main">
           Name
+          <span className="sr-only"> (required)</span>
         </label>
         <input
-          id="name"
+          id={`${formId}-name`}
           name="name"
           type="text"
           required
           autoComplete="name"
-          className="border border-gold-dim/30 bg-transparent px-3 py-2 text-text-main outline-none focus:border-gold"
+          className={fieldClass}
         />
       </div>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="organization" className="text-sm text-text-main">
+        <label
+          htmlFor={`${formId}-organization`}
+          className="text-sm text-text-main"
+        >
           Organization
         </label>
         <input
-          id="organization"
+          id={`${formId}-organization`}
           name="organization"
           type="text"
           autoComplete="organization"
-          className="border border-gold-dim/30 bg-transparent px-3 py-2 text-text-main outline-none focus:border-gold"
+          className={fieldClass}
         />
       </div>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="email" className="text-sm text-text-main">
+        <label htmlFor={`${formId}-email`} className="text-sm text-text-main">
           Business email
+          <span className="sr-only"> (required)</span>
         </label>
         <input
-          id="email"
+          id={`${formId}-email`}
           name="email"
           type="email"
           required
           autoComplete="email"
-          className="border border-gold-dim/30 bg-transparent px-3 py-2 text-text-main outline-none focus:border-gold"
+          className={fieldClass}
         />
       </div>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="interest" className="text-sm text-text-main">
+        <label htmlFor={`${formId}-interest`} className="text-sm text-text-main">
           Area of interest
+          <span className="sr-only"> (required)</span>
         </label>
         <select
-          id="interest"
+          id={`${formId}-interest`}
           name="interest"
           required
           defaultValue=""
-          className="border border-gold-dim/30 bg-bg px-3 py-2 text-text-main outline-none focus:border-gold"
+          className="w-full rounded-lg border border-gold-dim/40 bg-bg px-3 py-2.5 text-text-main outline-none focus-visible:border-gold"
         >
           <option value="" disabled>
             Select one
@@ -111,44 +128,52 @@ export default function ContactForm() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="message" className="text-sm text-text-main">
+        <label htmlFor={`${formId}-message`} className="text-sm text-text-main">
           Message
+          <span className="sr-only"> (required)</span>
         </label>
         <textarea
-          id="message"
+          id={`${formId}-message`}
           name="message"
           required
           rows={5}
-          className="border border-gold-dim/30 bg-transparent px-3 py-2 text-text-main outline-none focus:border-gold resize-y"
+          className={`${fieldClass} resize-y`}
         />
       </div>
 
-      <label className="flex items-start gap-3 text-sm text-text-body">
+      <div className="flex items-start gap-3 text-sm text-text-body">
         <input
+          id={consentId}
           type="checkbox"
           name="consent"
           required
-          className="mt-1"
+          className="mt-1 h-5 w-5 shrink-0 accent-gold"
         />
-        <span>
+        <label htmlFor={consentId}>
           I agree to the{" "}
-          <a href="/privacy">Privacy Policy</a> and understand that my
-          inquiry will be handled through Bradley Innovations Group&apos;s
-          controlled intake process.
-        </span>
-      </label>
+          <a href="/privacy">Privacy Policy </a> and understand that my inquiry
+          will be handled through Bradley Innovations Group&apos;s controlled
+          intake process.
+          <span className="sr-only"> (required)</span>
+        </label>
+      </div>
 
       <div>
         <button
           type="submit"
-          className="border border-gold bg-transparent px-5 py-2.5 text-sm text-gold transition-colors hover:bg-gold hover:text-bg"
+          className="rounded-lg border border-gold bg-transparent px-5 py-2.5 text-sm text-gold transition-colors hover:bg-gold hover:text-bg"
         >
           Send inquiry
         </button>
       </div>
 
       {status === "sent" ? (
-        <p className="text-sm text-text-body">
+        <p
+          id={statusId}
+          role="status"
+          aria-live="polite"
+          className="text-sm text-text-body"
+        >
           Your email client should open with the inquiry. If it does not, write
           to{" "}
           <a href="mailto:info@bradleyinnovations.group">

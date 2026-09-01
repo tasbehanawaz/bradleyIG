@@ -15,7 +15,7 @@ export default function Home() {
       title: "A Message from Joseph M. Bradley",
       description: "Our purpose, operating philosophy and long-term commitment.",
       href: "/letters/a-message-from-joseph-m-bradley",
-      updated: "2026-03-01",
+      updated: "2026-09-02",
     },
     {
       title: "About Bradley Innovations Group",
@@ -46,19 +46,19 @@ export default function Home() {
       title: "Letters & Perspectives",
       description: "Founder letters, books and selected thinking.",
       href: "/letters",
-      updated: "2026-03-01",
+      updated: "2026-09-02",
     },
     {
       title: "News & Announcements",
       description: "Official company and portfolio updates.",
       href: "/news",
-      updated: "2026-03-01",
+      updated: "2026-09-02",
     },
     {
       title: "Corporate Governance",
       description: "The principles that guide ownership, capital allocation and responsible AI.",
       href: "/governance",
-      updated: "2026-03-01",
+      updated: "2026-09-02",
     },
     {
       title: "Investor Information",
@@ -77,7 +77,7 @@ export default function Home() {
       <JsonLd data={organizationSchema()} />
       {/* Header — centered wordmark, locations, thin rule, official label */}
       <header className="mb-12 md:mb-16 text-center">
-        <h1 className="text-4xl md:text-5xl font-serif tracking-tight">
+        <h1 className="text-4xl md:text-5xl font-sans text-gold">
           Bradley Innovations Group
         </h1>
         <p className="mt-3 text-text-body">
@@ -92,7 +92,7 @@ export default function Home() {
 
       {/* Positioning */}
       <section className="mb-12 md:mb-16 pb-12 md:pb-16 border-b border-gold-dim/30">
-        <p className="text-gold-gradient text-lg md:text-xl font-serif mb-4">
+        <p className="text-gold-gradient text-lg md:text-xl font-sans mb-4">
           One parent. One operating team. Multiple businesses.
         </p>
         <p className="text-text-body">
@@ -100,29 +100,46 @@ export default function Home() {
         </p>
       </section>
 
-      {/* Link index — plain underlined links, 2-col desktop / 1-col mobile */}
+      {/* Link index — card grid */}
       <section className="mb-12 md:mb-16 home-index" aria-label="Site index">
-        <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8 list-none p-0 m-0">
+        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 list-none p-0 m-0">
           {links.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-text-main focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                className="home-index-card group flex h-full flex-col no-underline hover:no-underline rounded-2xl border border-gold-dim/30 bg-white/[0.025] px-5 py-5 md:px-6 md:py-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
               >
-                {link.title}
-              </a>
-              <p className="mt-1.5 text-text-body text-sm">
-                {link.description}
-              </p>
-              {link.updated ? (
-                <p className="mt-1 text-text-body/70 text-xs">
-                  Updated{" "}
-                  {new Date(link.updated + "T00:00:00").toLocaleDateString(
-                    "en-US",
-                    { year: "numeric", month: "long", day: "numeric" }
-                  )}
+                <div className="flex items-start justify-between gap-3">
+                  <span className="text-text-main text-[1.05rem] leading-snug group-hover:text-gold transition-colors">
+                    {link.title}
+                  </span>
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    className="mt-0.5 h-5 w-5 shrink-0 text-text-body/70 transition-colors group-hover:text-gold"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M7 17L17 7" />
+                    <path d="M8 7h9v9" />
+                  </svg>
+                </div>
+                <p className="mt-2 text-text-body text-sm no-underline">
+                  {link.description}
                 </p>
-              ) : null}
+                {link.updated ? (
+                  <p className="mt-auto pt-3 text-text-body/70 text-xs no-underline">
+                    Updated{" "}
+                    {new Date(link.updated + "T00:00:00").toLocaleDateString(
+                      "en-US",
+                      { year: "numeric", month: "long", day: "numeric" }
+                    )}
+                  </p>
+                ) : null}
+              </a>
             </li>
           ))}
         </ul>
@@ -130,7 +147,7 @@ export default function Home() {
 
       {/* Company strip */}
       <section className="pt-12 md:pt-16 border-t border-gold-dim/30">
-        <h2 className="text-text-main text-base font-normal mb-3">
+        <h2 className="text-gold text-base font-normal mb-3">
           Current businesses and strategic ventures
         </h2>
         <p className="text-text-body">

@@ -11,6 +11,7 @@ const publicRoutes = [
   "/letters",
   "/letters/a-message-from-joseph-m-bradley",
   "/news",
+  "/news/bradley-innovations-group-launches-official-corporate-website",
   "/governance",
   "/contact",
   "/investor-information",

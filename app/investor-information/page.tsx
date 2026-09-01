@@ -34,11 +34,14 @@ export default function InvestorInformation() {
         </>
       }
     >
-      <p>
-        <a href="mailto:investors@bradleyinnovations.group?subject=Request%20Investor%20Information">
+      <div className="flex justify-center">
+        <a
+          href="mailto:investors@bradleyinnovations.group?subject=Request%20Investor%20Information"
+          className="site-cta inline-flex items-center justify-center rounded-lg border border-gold bg-transparent px-6 py-3 text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+        >
           Request Investor Information
         </a>
-      </p>
+      </div>
     </SecondaryPage>
   );
 }

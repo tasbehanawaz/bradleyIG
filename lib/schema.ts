@@ -68,6 +68,7 @@ export function personSchema(input: {
   slug: string;
   role: string;
   bio: string;
+  image?: string;
 }) {
   return {
     "@context": "https://schema.org",
@@ -76,6 +77,7 @@ export function personSchema(input: {
     name: input.name,
     jobTitle: input.role,
     description: input.bio,
+    ...(input.image ? { image: input.image } : {}),
     worksFor: {
       "@id": `${SITE_URL}/#organization`,
     },
