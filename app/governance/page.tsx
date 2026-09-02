@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import ContentCard from "@/components/ContentCard";
 import SecondaryPage from "@/components/SecondaryPage";
+import { getCdnUrl } from "@/lib/cdn";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -249,24 +250,33 @@ export default function Governance() {
           {[
             {
               title: "Privacy Policy",
-              href: "/privacy",
+              href: getCdnUrl("documents/privacy-policy.pdf"),
               description: "How we handle information submitted through this site.",
             },
             {
               title: "Website Terms of Use",
-              href: "/terms",
-              description: "Terms governing use of the Bradley Innovations Group website.",
+              href: getCdnUrl("documents/website-terms-of-use.pdf"),
+              description:
+                "Terms governing use of the Bradley Innovations Group website.",
             },
             {
               title: "Responsible AI Principles",
-              href: "/governance#responsible-ai",
+              href: getCdnUrl("documents/responsible-ai-principles.pdf"),
               description:
                 "Identity, human authority, traceability and security in how we design AI.",
+            },
+            {
+              title: "Code of Conduct",
+              href: getCdnUrl("documents/code-of-conduct.pdf"),
+              description:
+                "Group standards for conduct and accountability.",
             },
           ].map((doc) => (
             <li key={doc.href}>
               <a
                 href={doc.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="content-card group flex h-full flex-col no-underline hover:no-underline rounded-2xl border border-gold-dim/30 bg-white/[0.025] px-5 py-5 md:px-6 md:py-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
               >
                 <div className="flex items-start justify-between gap-3">
@@ -287,25 +297,12 @@ export default function Governance() {
                     <path d="M8 7h9v9" />
                   </svg>
                 </div>
-                <p className="mt-2 text-text-body text-sm text-left">{doc.description}</p>
+                <p className="mt-2 text-text-body text-sm text-left">
+                  {doc.description}
+                </p>
               </a>
             </li>
           ))}
-          <li>
-            <div className="content-card flex h-full flex-col rounded-2xl border border-gold-dim/30 bg-white/[0.025] px-5 py-5 md:px-6 md:py-6 opacity-80">
-              <div className="flex items-start justify-between gap-3">
-                <span className="text-gold text-[1.05rem] leading-snug font-medium">
-                  Code of Conduct
-                </span>
-                <span className="shrink-0 text-xs text-text-body/70 mt-1">
-                  to be added soon
-                </span>
-              </div>
-              <p className="mt-2 text-text-body text-sm text-left">
-                Group standards for conduct and accountability — coming soon.
-              </p>
-            </div>
-          </li>
         </ul>
       </section>
     </SecondaryPage>
