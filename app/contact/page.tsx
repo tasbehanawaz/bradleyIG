@@ -65,11 +65,23 @@ export default function Contact() {
         <dl className="space-y-4 text-text-body">
           <div>
             <dt className="font-semibold text-text-main">United States</dt>
-            <dd>[City, State or approved office address]</dd>
+            <dd>
+              332 South Michigan Ave STE 121 2170
+              <br />
+              Chicago, IL 60604
+            </dd>
           </div>
           <div>
             <dt className="font-semibold text-text-main">GCC</dt>
-            <dd>Dubai, United Arab Emirates [approved office address]</dd>
+            <dd>
+              Damac Park Towers, Tower B Unit 301
+              <br />
+              DIFC, Dubai
+              <br />
+              P.O. Box 75505
+              <br />
+              United Arab Emirates
+            </dd>
           </div>
         </dl>
       </section>

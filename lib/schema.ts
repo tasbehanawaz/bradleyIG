@@ -23,14 +23,18 @@ export function organizationSchema() {
     address: [
       {
         "@type": "PostalAddress",
+        streetAddress: "332 South Michigan Ave STE 121 2170",
+        addressLocality: "Chicago",
+        addressRegion: "IL",
+        postalCode: "60604",
         addressCountry: "US",
-        addressLocality: "United States",
       },
       {
         "@type": "PostalAddress",
-        addressCountry: "AE",
+        streetAddress: "Damac Park Towers, Tower B Unit 301, DIFC",
         addressLocality: "Dubai",
-        addressRegion: "Dubai",
+        postalCode: "75505",
+        addressCountry: "AE",
       },
     ],
     contactPoint: [
