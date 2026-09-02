@@ -38,26 +38,24 @@ export default function Leadership() {
           })
         )}
       />
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
         {leaders.map((leader) => (
-          <ContentCard key={leader.slug}>
-            <div id={leader.slug} className="text-center">
+          <ContentCard key={leader.slug} className="h-full">
+            <div id={leader.slug}>
               {leader.image ? (
-                <div className="mb-5 flex justify-center">
-                  <img
-                    src={getCdnUrl(leader.image)}
-                    alt={`${leader.name}, ${leader.role}`}
-                    width={144}
-                    height={144}
-                    className="h-28 w-28 rounded-full object-cover border border-gold-dim/40 md:h-32 md:w-32"
-                    decoding="async"
-                    loading="lazy"
-                  />
-                </div>
+                <img
+                  src={getCdnUrl(leader.image)}
+                  alt={`${leader.name}, ${leader.role}`}
+                  width={144}
+                  height={144}
+                  className="mb-5 h-24 w-24 rounded-full object-cover border border-gold-dim/40 md:h-28 md:w-28"
+                  decoding="async"
+                  loading="lazy"
+                />
               ) : null}
               <h2 className="text-xl font-sans text-gold mb-1">{leader.name}</h2>
               <p className="text-gold text-sm mb-4">{leader.role}</p>
-              <p className="text-text-body text-sm leading-relaxed text-left md:text-center">
+              <p className="text-text-body text-sm leading-relaxed">
                 {leader.bio}
               </p>
             </div>

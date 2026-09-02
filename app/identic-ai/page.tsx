@@ -237,7 +237,7 @@ export default function IdenticAI() {
 
       <section className="body-stack">
         <h2 className="text-2xl font-sans">The Identic AI Difference</h2>
-        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 list-none p-0 m-0">
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 list-none p-0 m-0">
           {differenceItems.map((item) => (
             <li key={item.title}>
               <FeatureCard {...item} />
@@ -248,7 +248,7 @@ export default function IdenticAI() {
 
       <section className="body-stack">
         <h2 className="text-2xl font-sans">The Category Progression</h2>
-        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 list-none p-0 m-0">
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 list-none p-0 m-0">
           {progressionItems.map((item) => (
             <li key={item.title}>
               <FeatureCard {...item} />
@@ -259,7 +259,7 @@ export default function IdenticAI() {
 
       <section className="body-stack">
         <h2 className="text-2xl font-sans">Where BIG Builds</h2>
-        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 list-none p-0 m-0">
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 list-none p-0 m-0">
           {buildsItems.map((item) => (
             <li key={item.title}>
               <FeatureCard {...item} />

@@ -48,8 +48,13 @@ public/assets/          # Brand marks, images, documents
 - Sans (Helvetica Neue / system): body copy
 - Body line-height: `1.5`
 
+**Layout:** every page is left-aligned inside `.container-page`, which shares its
+72rem width and gutters with the navbar and footer so all content lines up on one
+left edge. Running copy is capped at a `68ch` measure by a global `main p` rule —
+grids and cards still fill the full shell.
+
 **Utilities:**
-- `.container-prose` — ~900px content width
+- `.container-page` — 72rem page shell, matches nav/footer gutters
 - `.body-stack` — vertical section spacing
 - `.text-gold-gradient` — gold gradient text
 - `.content-card` — companies, leaders, news, letters only

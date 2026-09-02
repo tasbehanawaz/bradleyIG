@@ -72,7 +72,7 @@ export default function RootLayout({
         </main>
 
         <footer className="mt-20 border-t border-gold-dim/30">
-          <div className="mx-auto max-w-6xl px-4 py-12 md:px-6 md:py-14">
+          <div className="container-page py-12 md:py-14">
             {/* Top row — logo + primary links */}
             <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between md:gap-10">
               <a

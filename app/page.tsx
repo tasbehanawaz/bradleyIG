@@ -73,21 +73,18 @@ export default function Home() {
   ];
 
   return (
-    <div className="container-prose py-12 md:py-20">
+    <div className="container-page py-12 md:py-20">
       <JsonLd data={organizationSchema()} />
-      {/* Header — centered wordmark, locations, thin rule, official label */}
-      <header className="mb-12 md:mb-16 text-center">
-        <h1 className="text-4xl md:text-5xl font-sans text-gold">
+      {/* Header — left-aligned wordmark, locations, thin rule, official label */}
+      <header className="mb-12 md:mb-16">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-sans text-gold">
           Bradley Innovations Group
         </h1>
         <p className="mt-3 text-text-body">
           Chicago, Illinois, United States&nbsp;&nbsp;|&nbsp;&nbsp;Dubai, United
           Arab Emirates
         </p>
-        <div
-          className="mx-auto my-5 h-px w-16 border-0 bg-gold-dim/50"
-          role="presentation"
-        />
+        <div className="my-5 h-px w-16 border-0 bg-gold-dim/50" role="presentation" />
         <p className="text-text-body text-sm">Official Corporate Website</p>
       </header>
 
@@ -103,7 +100,7 @@ export default function Home() {
 
       {/* Link index — card grid */}
       <section className="mb-12 md:mb-16 home-index" aria-label="Site index">
-        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 list-none p-0 m-0">
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 list-none p-0 m-0">
           {links.map((link) => (
             <li key={link.href}>
               <a
