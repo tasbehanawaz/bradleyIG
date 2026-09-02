@@ -216,8 +216,14 @@ footer a:hover {
   }
 }
 
-.container-prose {
-  max-width: 56rem;
+/*
+ * Page shell. 72rem + these gutters match the navbar pill and the footer
+ * (max-w-6xl / px-4 md:px-6), so every page shares one left edge with the
+ * chrome above and below it.
+ */
+.container-page {
+  width: 100%;
+  max-width: 72rem;
   margin-left: auto;
   margin-right: auto;
   padding-left: 1rem;
@@ -225,10 +231,19 @@ footer a:hover {
 }
 
 @media (min-width: 768px) {
-  .container-prose {
+  .container-page {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
+}
+
+/*
+ * Readable measure. The shell is wide so grids and cards can fill it, but
+ * running copy is capped so lines stay left-aligned and legible instead of
+ * stretching the full 72rem. Inside cards and grid columns this is a no-op.
+ */
+main p {
+  max-width: 68ch;
 }
 
 .text-gold-gradient {
@@ -288,20 +303,13 @@ footer a:hover {
   }
 }
 
-/* Secondary page headings — centered (page/section titles) */
-.secondary-page header {
-  text-align: center;
-}
-
+/* Every page reads from the same left edge — headings included */
+.secondary-page,
+.secondary-page header,
 .secondary-page h1,
 .secondary-page h2,
 .secondary-page h3,
 .secondary-page h4 {
-  text-align: center;
-}
-
-/* Icon + copy cards — title sits beside the icon, left-aligned */
-.secondary-page .content-card .card-row h3 {
   text-align: left;
 }
 

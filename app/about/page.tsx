@@ -270,7 +270,7 @@ export default function About() {
 
       <section className="body-stack">
         <h2 className="text-2xl font-sans">What BIG Provides</h2>
-        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 list-none p-0 m-0">
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 list-none p-0 m-0">
           {PROVIDES.map((item) => (
             <li key={item.title}>
               <ContentCard className="h-full">
@@ -295,7 +295,7 @@ export default function About() {
 
       <section className="body-stack">
         <h2 className="text-2xl font-sans">Where We Operate</h2>
-        <p className="text-text-main text-center font-semibold">United States and GCC</p>
+        <p className="text-text-main font-semibold">United States and GCC</p>
         <p className="text-text-body">
           BIG was designed around a two-way operating corridor. We help bring
           technology and operating capability from the United States into the
@@ -307,7 +307,7 @@ export default function About() {
 
       <section className="body-stack">
         <h2 className="text-2xl font-sans">Core Facts</h2>
-        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 list-none p-0 m-0">
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 list-none p-0 m-0">
           {CORE_FACTS.map((item) => (
             <li key={item.title}>
               <ContentCard className="h-full">

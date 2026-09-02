@@ -86,11 +86,11 @@ export default function Contact() {
         </dl>
       </section>
 
-      <section className="mx-auto w-full max-w-xl">
+      <section className="w-full max-w-2xl">
         <div className="rounded-2xl border border-gold-dim/30 bg-white/[0.025] px-5 py-6 md:px-7 md:py-8">
           <div className="body-stack">
-            <h2 className="text-2xl font-sans text-center">Send an inquiry</h2>
-            <p className="text-text-body text-sm text-center">
+            <h2 className="text-2xl font-sans">Send an inquiry</h2>
+            <p className="text-text-body text-sm">
               Please do not send confidential, proprietary or personal
               information through the website contact form.
             </p>

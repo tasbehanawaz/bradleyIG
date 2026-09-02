@@ -51,7 +51,7 @@ export default function SecondaryPage({
   ];
 
   return (
-    <article className="secondary-page container-prose py-12 md:py-20">
+    <article className="secondary-page container-page py-12 md:py-20">
       <JsonLd data={breadcrumbSchema(crumbItems)} />
 
       <p className="mb-8">
@@ -60,7 +60,7 @@ export default function SecondaryPage({
         </a>
       </p>
 
-      <header className="mb-10 md:mb-12 pb-8 border-b border-gold-dim/25 text-center">
+      <header className="mb-10 md:mb-12 pb-8 border-b border-gold-dim/25">
         <h1 className="text-4xl md:text-[2.75rem] font-sans text-gold mb-4 leading-tight">
           {title}
         </h1>
@@ -88,7 +88,7 @@ export default function SecondaryPage({
         ) : null}
 
         {intro ? (
-          <div className="body-stack text-text-body max-w-3xl mx-auto">
+          <div className="body-stack text-text-body max-w-3xl">
             {intro}
           </div>
         ) : null}
