@@ -1,0 +1,38 @@
+# Dependencies & build output
+node_modules
+.next
+out
+dist
+build
+coverage
+
+# Git / IDE
+.git
+.gitignore
+.cursor
+.vscode
+.idea
+*.md
+!README.md
+
+# Env & secrets (pass via compose build args / runtime env)
+.env
+.env.*
+!.env.example
+*.pem
+*.json.key
+service-account*.json
+**/service-account*.json
+
+# Tests & tooling
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.eslintcache
+.eslintrc*
+eslint.config.*
+
+# Misc
+.DS_Store
+*.tsbuildinfo
+scripts

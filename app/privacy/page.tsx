@@ -107,12 +107,12 @@ export default function Privacy() {
     <SecondaryPage
       title="Privacy Policy"
       path="/privacy"
-      intro={
-        <p className="text-sm">
-          Draft outline pending legal review and approval. The published policy
-          will cover at least the topics below.
-        </p>
-      }
+      // intro={
+      //   <p className="text-sm">
+      //     Draft outline pending legal review and approval. The published policy
+      //     will cover at least the topics below.
+      //   </p>
+      // }
     >
       <section className="body-stack">
         <h2 className="text-2xl font-sans">Minimum coverage</h2>

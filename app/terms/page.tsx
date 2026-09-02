@@ -14,12 +14,12 @@ export default function Terms() {
     <SecondaryPage
       title="Terms of Use"
       path="/terms"
-      intro={
-        <p className="text-sm">
-          Draft for legal review. Counsel must approve before treating this as
-          final.
-        </p>
-      }
+      // intro={
+      //   // <p className="text-sm">
+      //   //   Draft for legal review. Counsel must approve before treating this as
+      //   //   final.
+      //   // </p>
+      // }
     >
       <section className="body-stack">
         <h2 className="text-2xl font-sans">Disclaimer</h2>

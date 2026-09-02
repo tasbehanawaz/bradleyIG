@@ -105,3 +105,15 @@ Copy `.env.example` to `.env` and set:
 
 - `NEXT_PUBLIC_SITE_URL` — canonical site URL
 - `NEXT_PUBLIC_CDN_URL` — optional CDN base for assets
+
+## Docker
+
+Production image uses Next.js `output: "standalone"`.
+
+```bash
+# Optional: put NEXT_PUBLIC_SITE_URL / NEXT_PUBLIC_CDN_URL in .env
+docker compose build
+docker compose up
+```
+
+App listens on [http://localhost:3000](http://localhost:3000). Rebuild after changing `NEXT_PUBLIC_*` values (they are inlined at build time).
