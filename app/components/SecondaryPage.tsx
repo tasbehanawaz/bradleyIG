@@ -123,7 +123,7 @@ export default function SecondaryPage({
         ) : null}
 
         {intro ? (
-          <div className="body-stack text-text-body max-w-3xl">{intro}</div>
+          <div className="body-stack text-text-body">{intro}</div>
         ) : null}
       </header>
 
