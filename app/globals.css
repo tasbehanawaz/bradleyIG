@@ -237,15 +237,6 @@ footer a:hover {
   }
 }
 
-/*
- * Readable measure. The shell is wide so grids and cards can fill it, but
- * running copy is capped so lines stay left-aligned and legible instead of
- * stretching the full 72rem. Inside cards and grid columns this is a no-op.
- */
-main p {
-  max-width: 68ch;
-}
-
 .text-gold-gradient {
   background: linear-gradient(90deg, #d2ab36 0%, #fde18c 100%);
   -webkit-background-clip: text;
