@@ -67,7 +67,7 @@ export default function Companies() {
           <ContentCard key={company.name}>
             <div className="body-stack">
               <div>
-                <h2 className="text-2xl font-sans text-gold mb-1">
+                <h2 className="text-2xl font-sans text-gold mb-1 !text-left">
                   {company.name}
                 </h2>
                 <p className="text-text-body text-sm mb-3">

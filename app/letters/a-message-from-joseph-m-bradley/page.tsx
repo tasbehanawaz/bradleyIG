@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import JsonLd from "@/components/JsonLd";
 import SecondaryPage from "@/components/SecondaryPage";
+import { getCdnUrl } from "@/lib/cdn";
 import { articleSchema } from "@/lib/schema";
 import { pageMetadata } from "@/lib/seo";
 
@@ -25,6 +26,10 @@ export default function MessageFromFounder() {
       path={PATH}
       published={PUBLISHED}
       breadcrumbs={[{ name: "Letters & Perspectives", path: "/letters" }]}
+      portrait={{
+        src: getCdnUrl("joseph.jpg"),
+        alt: "Joseph M. Bradley, Founder & Chief Executive Officer",
+      }}
     >
       <JsonLd
         data={articleSchema({

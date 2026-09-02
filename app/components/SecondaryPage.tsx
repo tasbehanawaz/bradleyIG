@@ -7,6 +7,11 @@ type Crumb = {
   path: string;
 };
 
+type Portrait = {
+  src: string;
+  alt: string;
+};
+
 type SecondaryPageProps = {
   title: string;
   /** Current page path for breadcrumbs, e.g. /about */
@@ -21,6 +26,8 @@ type SecondaryPageProps = {
   updated?: string;
   /** Extra middle crumbs between Home and the current page */
   breadcrumbs?: Crumb[];
+  /** Optional portrait shown left of the page title */
+  portrait?: Portrait;
   children?: ReactNode;
 };
 
@@ -40,6 +47,7 @@ export default function SecondaryPage({
   published,
   updated,
   breadcrumbs = [],
+  portrait,
   children,
 }: SecondaryPageProps) {
   const hasDates = Boolean(published || updated);
@@ -49,6 +57,19 @@ export default function SecondaryPage({
     ...breadcrumbs,
     { name: title, path },
   ];
+
+  const dates = hasDates ? (
+    <p className="mb-4 text-sm text-text-body/70">
+      {published ? <span>Published {formatDisplayDate(published)}</span> : null}
+      {!published && updated ? (
+        <span>Updated {formatDisplayDate(updated)}</span>
+      ) : null}
+      {published && showUpdated ? <span aria-hidden="true"> · </span> : null}
+      {published && showUpdated ? (
+        <span>Updated {formatDisplayDate(updated!)}</span>
+      ) : null}
+    </p>
+  ) : null;
 
   return (
     <article className="secondary-page container-page py-12 md:py-20">
@@ -60,37 +81,49 @@ export default function SecondaryPage({
         </a>
       </p>
 
-      <header className="mb-10 md:mb-12 pb-8 border-b border-gold-dim/25">
-        <h1 className="text-4xl md:text-[2.75rem] font-sans text-gold mb-4 leading-tight">
-          {title}
-        </h1>
-
-        {hasDates ? (
-          <p className="mb-4 text-sm text-text-body/70">
-            {published ? (
-              <span>Published {formatDisplayDate(published)}</span>
-            ) : updated ? (
-              <span>Updated {formatDisplayDate(updated)}</span>
-            ) : null}
-            {published && showUpdated ? (
-              <span aria-hidden="true"> · </span>
-            ) : null}
-            {published && showUpdated ? (
-              <span>Updated {formatDisplayDate(updated!)}</span>
-            ) : null}
-          </p>
-        ) : null}
+      <header
+        className={`mb-10 md:mb-12 pb-8 border-b border-gold-dim/25 ${
+          portrait ? "page-header-with-portrait" : ""
+        }`}
+      >
+        {portrait ? (
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-8">
+            <img
+              src={portrait.src}
+              alt={portrait.alt}
+              width={160}
+              height={160}
+              className="h-28 w-28 shrink-0 rounded-full object-cover border border-gold-dim/40 sm:h-36 sm:w-36 md:h-40 md:w-40"
+              decoding="async"
+            />
+            <div className="portrait-heading-block min-w-0 flex-1">
+              <h1 className="page-title-beside-portrait text-3xl md:text-[2.5rem] font-sans text-gold mb-3 leading-tight">
+                {title}
+              </h1>
+              {dates}
+            </div>
+          </div>
+        ) : (
+          <>
+            <h1 className="text-4xl md:text-[2.75rem] font-sans text-gold mb-4 leading-tight">
+              {title}
+            </h1>
+            {dates}
+          </>
+        )}
 
         {lede ? (
-          <p className="text-gold-gradient text-lg md:text-xl font-sans mb-4">
+          <p
+            className={`text-gold-gradient text-lg md:text-xl font-sans mb-4 ${
+              portrait ? "mt-6" : ""
+            }`}
+          >
             {lede}
           </p>
         ) : null}
 
         {intro ? (
-          <div className="body-stack text-text-body max-w-3xl">
-            {intro}
-          </div>
+          <div className="body-stack text-text-body max-w-3xl">{intro}</div>
         ) : null}
       </header>
 

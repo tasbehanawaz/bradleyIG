@@ -313,6 +313,16 @@ main p {
   text-align: left;
 }
 
+.secondary-page h1.page-title-beside-portrait {
+  text-align: left;
+}
+
+.secondary-page header.page-header-with-portrait,
+.secondary-page header.page-header-with-portrait .portrait-heading-block,
+.secondary-page header.page-header-with-portrait .portrait-heading-block p {
+  text-align: left;
+}
+
 /* Secondary page body sections */
 .secondary-body > section + section {
   margin-top: 2.5rem;
