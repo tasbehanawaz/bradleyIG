@@ -81,7 +81,8 @@ export default function Home() {
           Bradley Innovations Group
         </h1>
         <p className="mt-3 text-text-body">
-          United States&nbsp;&nbsp;|&nbsp;&nbsp;Dubai, United Arab Emirates
+          Chicago, Illinois, United States&nbsp;&nbsp;|&nbsp;&nbsp;Dubai, United
+          Arab Emirates
         </p>
         <div
           className="mx-auto my-5 h-px w-16 border-0 bg-gold-dim/50"

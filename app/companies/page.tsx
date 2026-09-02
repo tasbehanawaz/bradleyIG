@@ -42,7 +42,7 @@ const companies = [
       "The objective is to make distributed compute practical for enterprise, telecommunications and public-sector use cases.",
     ],
     cta: "Visit Acurast",
-    href: null as string | null,
+    href: "https://acurast.com/" as string | null,
   },
 ];
 
