@@ -41,6 +41,8 @@ export const leaders: Leader[] = [
     name: "Alex Cheung",
     slug: "alex-cheung",
     role: "Chief Financial Officer",
+    image: "alex.jpeg",
     bio: "Finance and transaction professional with experience in Deloitte M&A and transaction services, private equity and institutional banking. Leads financial strategy, planning, capital allocation, transfer pricing and investor readiness.",
   },
 ];
+
