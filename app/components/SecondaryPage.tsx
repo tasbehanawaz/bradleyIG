@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import JsonLd from "@/components/JsonLd";
+import PageBreadcrumb from "@/components/PageBreadcrumb";
 import { breadcrumbSchema } from "@/lib/schema";
 
 type Crumb = {
@@ -75,11 +76,9 @@ export default function SecondaryPage({
     <article className="secondary-page container-page py-12 md:py-20">
       <JsonLd data={breadcrumbSchema(crumbItems)} />
 
-      <p className="mb-8">
-        <a href="/" className="text-sm text-text-body secondary-link">
-          ← Back to Home
-        </a>
-      </p>
+      <div className="mb-8">
+        <PageBreadcrumb current={title} items={breadcrumbs} />
+      </div>
 
       <header
         className={`mb-10 md:mb-12 pb-8 border-b border-gold-dim/25 ${
@@ -97,7 +96,7 @@ export default function SecondaryPage({
               decoding="async"
             />
             <div className="portrait-heading-block min-w-0 flex-1">
-              <h1 className="page-title-beside-portrait text-3xl md:text-[2.5rem] font-sans text-gold mb-3 leading-tight">
+              <h1 className="page-title-beside-portrait text-3xl md:text-[2.5rem] mb-3 leading-tight">
                 {title}
               </h1>
               {dates}
@@ -105,7 +104,7 @@ export default function SecondaryPage({
           </div>
         ) : (
           <>
-            <h1 className="text-4xl md:text-[2.75rem] font-sans text-gold mb-4 leading-tight">
+            <h1 className="text-4xl md:text-[2.75rem] mb-4 leading-tight">
               {title}
             </h1>
             {dates}
@@ -114,7 +113,7 @@ export default function SecondaryPage({
 
         {lede ? (
           <p
-            className={`text-gold-gradient text-lg md:text-xl font-sans mb-4 ${
+            className={`text-lg md:text-xl text-white mb-4 ${
               portrait ? "mt-6" : ""
             }`}
           >
