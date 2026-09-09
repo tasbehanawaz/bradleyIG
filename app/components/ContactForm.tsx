@@ -13,7 +13,7 @@ const INTEREST_OPTIONS = [
 ] as const;
 
 const fieldClass =
-  "w-full rounded-lg border border-gold-dim/40 bg-transparent px-3 py-2.5 text-text-main outline-none focus-visible:border-gold";
+  "w-full border border-white/25 bg-transparent px-3 py-2.5 text-white outline-none focus-visible:border-white";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "sent">("idle");
@@ -59,7 +59,7 @@ export default function ContactForm() {
       aria-describedby={status === "sent" ? statusId : undefined}
     >
       <div className="flex flex-col gap-2">
-        <label htmlFor={`${formId}-name`} className="text-sm text-text-main">
+        <label htmlFor={`${formId}-name`} className="text-sm text-white">
           Name
           <span className="sr-only"> (required)</span>
         </label>
@@ -76,7 +76,7 @@ export default function ContactForm() {
       <div className="flex flex-col gap-2">
         <label
           htmlFor={`${formId}-organization`}
-          className="text-sm text-text-main"
+          className="text-sm text-white"
         >
           Organization
         </label>
@@ -90,7 +90,7 @@ export default function ContactForm() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor={`${formId}-email`} className="text-sm text-text-main">
+        <label htmlFor={`${formId}-email`} className="text-sm text-white">
           Business email
           <span className="sr-only"> (required)</span>
         </label>
@@ -105,7 +105,7 @@ export default function ContactForm() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor={`${formId}-interest`} className="text-sm text-text-main">
+        <label htmlFor={`${formId}-interest`} className="text-sm text-white">
           Area of interest
           <span className="sr-only"> (required)</span>
         </label>
@@ -114,7 +114,7 @@ export default function ContactForm() {
           name="interest"
           required
           defaultValue=""
-          className="w-full rounded-lg border border-gold-dim/40 bg-bg px-3 py-2.5 text-text-main outline-none focus-visible:border-gold"
+          className="w-full border border-white/25 bg-black px-3 py-2.5 text-white outline-none focus-visible:border-white"
         >
           <option value="" disabled>
             Select one
@@ -128,7 +128,7 @@ export default function ContactForm() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor={`${formId}-message`} className="text-sm text-text-main">
+        <label htmlFor={`${formId}-message`} className="text-sm text-white">
           Message
           <span className="sr-only"> (required)</span>
         </label>
@@ -141,19 +141,24 @@ export default function ContactForm() {
         />
       </div>
 
-      <div className="flex items-start gap-3 text-sm text-text-body">
+      <div className="flex items-start gap-3 text-sm text-white/85">
         <input
           id={consentId}
           type="checkbox"
           name="consent"
           required
-          className="mt-1 h-5 w-5 shrink-0 accent-gold"
+          className="mt-1 h-5 w-5 shrink-0 accent-white"
         />
         <label htmlFor={consentId}>
           I agree to the{" "}
-          <a href="/privacy">Privacy Policy </a> and understand that my inquiry
-          will be handled through Bradley Innovations Group&apos;s controlled
-          intake process.
+          <a
+            href="/privacy"
+            className="text-white underline decoration-white/40 underline-offset-[0.2em] hover:text-white"
+          >
+            Privacy Policy
+          </a>{" "}
+          and understand that my inquiry will be handled through Bradley
+          Innovations Group&apos;s controlled intake process.
           <span className="sr-only"> (required)</span>
         </label>
       </div>
@@ -161,7 +166,7 @@ export default function ContactForm() {
       <div>
         <button
           type="submit"
-          className="rounded-lg border border-gold bg-transparent px-5 py-2.5 text-sm text-gold transition-colors hover:bg-gold hover:text-bg"
+          className="border border-white bg-white px-5 py-2.5 text-sm text-black transition-colors hover:bg-white/90"
         >
           Send inquiry
         </button>
@@ -172,11 +177,14 @@ export default function ContactForm() {
           id={statusId}
           role="status"
           aria-live="polite"
-          className="text-sm text-text-body"
+          className="text-sm text-white/85"
         >
           Your email client should open with the inquiry. If it does not, write
           to{" "}
-          <a href="mailto:info@bradleyinnovations.group">
+          <a
+            href="mailto:info@bradleyinnovations.group"
+            className="text-white underline decoration-white/40 underline-offset-[0.2em] hover:text-white"
+          >
             info@bradleyinnovations.group
           </a>
           .

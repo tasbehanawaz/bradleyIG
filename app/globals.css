@@ -20,12 +20,9 @@
   --color-bronze: #b8960f;
   --color-bronze-dark: #8b7310;
 
-  /* Same stack as jmbx.ai (.font-display / .font-sans) */
-  --font-sans: "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui,
-    -apple-system, sans-serif;
-  --font-display: "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui,
-    -apple-system, sans-serif;
-  --font-serif: Georgia, serif;
+  --font-sans: var(--font-pt-serif), Georgia, "Times New Roman", serif;
+  --font-display: var(--font-pt-serif), Georgia, "Times New Roman", serif;
+  --font-serif: var(--font-pt-serif), Georgia, "Times New Roman", serif;
 
   --backdrop-blur-glass: 27px;
   --backdrop-blur-glass-sm: 21px;
@@ -152,17 +149,37 @@ select {
   overflow-wrap: break-word;
 }
 
-/* Headings — slight tighten only; avoid cramped tracking */
+/* Headings — card and in-content titles stay solid white */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-sans);
-  font-weight: 500;
+  font-family: var(--font-serif);
+  font-weight: 400;
   letter-spacing: -0.01em;
-  color: var(--color-gold);
+  color: #fff;
+}
+
+/* Main page and section titles only */
+.section-heading,
+.page-hero h1,
+.home-hero h1,
+.secondary-page header h1,
+.secondary-body > section > h2 {
+  width: fit-content;
+  max-width: 100%;
+  background-image: linear-gradient(
+    90deg,
+    #ffffff 29%,
+    #e6c46c 48%,
+    #ffffff 65%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 a {
@@ -196,6 +213,43 @@ header a:hover,
 footer a,
 footer a:hover {
   text-decoration: none;
+}
+
+header a:hover {
+  color: #fff;
+}
+
+.home-hero h1,
+.home-hero h2 {
+  font-family: var(--font-serif);
+}
+
+a.home-read-more,
+a.home-read-more:hover {
+  text-decoration: none;
+  color: #000;
+  background-color: #fff;
+}
+
+a.page-cta,
+a.page-cta:hover {
+  text-decoration: none;
+  color: #000;
+}
+
+a.feed-card,
+a.feed-card:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.home-carousel {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.home-carousel::-webkit-scrollbar {
+  display: none;
 }
 
 .body-stack {
@@ -362,6 +416,25 @@ footer a:hover {
   }
 }
 
+.js-reveal main section:not(.page-hero):not(.home-hero),
+.js-reveal main .letter-body,
+.js-reveal main .secondary-page,
+.js-reveal footer {
+  opacity: 0;
+  transform: translate3d(0, 2.25rem, 0);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.js-reveal main section:not(.page-hero):not(.home-hero).is-inview,
+.js-reveal main .letter-body.is-inview,
+.js-reveal main .secondary-page.is-inview,
+.js-reveal footer.is-inview {
+  opacity: 1;
+  transform: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -374,6 +447,15 @@ footer a:hover {
   .secondary-page .content-card,
   .home-index .home-index-card,
   .secondary-page a {
+    transition: none;
+  }
+
+  .js-reveal main section:not(.page-hero):not(.home-hero),
+  .js-reveal main .letter-body,
+  .js-reveal main .secondary-page,
+  .js-reveal footer {
+    opacity: 1;
+    transform: none;
     transition: none;
   }
 }

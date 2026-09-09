@@ -100,7 +100,7 @@ export default function LaunchAnnouncement() {
         </p>
 
         <section className="body-stack pt-6 mt-2 border-t border-gold-dim/25">
-          <h2 className="text-2xl font-sans">About Bradley Innovations Group</h2>
+          <h2 className="text-2xl">About Bradley Innovations Group</h2>
           <p>
             Bradley Innovations Group is a privately held, AI-native operating
             group that builds, owns and scales technology businesses across the

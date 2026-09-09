@@ -29,16 +29,15 @@ module.exports = {
       },
       fontFamily: {
         sans: [
-          '"Helvetica Neue"',
-          'Helvetica',
-          'Arial',
-          'ui-sans-serif',
-          'system-ui',
-          '-apple-system',
-          'sans-serif',
+          'var(--font-pt-serif)',
+          'Georgia',
+          '"Times New Roman"',
+          'serif',
         ],
         serif: [
-          '"Georgia"',
+          'var(--font-pt-serif)',
+          'Georgia',
+          '"Times New Roman"',
           'serif',
         ],
       },
